@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Проверка изображения</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 40px 20px;
+      font-family: Arial, sans-serif;
+      color: #222;
+      background: #f4f6f8;
+    }
+
+    main {
+      max-width: 650px;
+      margin: 0 auto;
+      padding: 30px;
+      background: white;
+      border-radius: 14px;
+      box-shadow: 0 4px 18px #00000012;
+    }
+
+    h1 {
+      margin-top: 0;
+    }
+
+    form {
+      padding: 20px;
+      border: 1px dashed #9aa4af;
+      border-radius: 10px;
+    }
+
+    label {
+      display: block;
+      margin: 16px 0 8px;
+      font-weight: bold;
+    }
+
+    select,
+    input[type="file"] {
+      width: 100%;
+      padding: 10px;
+    }
+
+    button {
+      margin-top: 18px;
+      padding: 11px 18px;
+      border: 0;
+      border-radius: 7px;
+      color: white;
+      background: #2563eb;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background: #1d4ed8;
+    }
+
+    .result {
+      margin-top: 24px;
+      padding: 16px;
+      border-radius: 8px;
+      background: #eef5ff;
+      line-height: 1.8;
+    }
+
+    .error {
+      margin-top: 20px;
+      color: #b00020;
+    }
+
+    .preview {
+      display: block;
+      max-width: 100%;
+      max-height: 400px;
+      margin-top: 20px;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Проверка изображения</h1>
+    <p>Выберите модель и загрузите фото.</p>
+
+    <form method="post" enctype="multipart/form-data">
+      <label for="model">Модель:</label>
+      <select id="model" name="model">
+        <option value="simple"
+          {% if selected_model == "simple" %}selected{% endif %}>
+          Простая модель — Keras
+        </option>
+        <option value="complex"
+          {% if selected_model == "complex" %}selected{% endif %}>
+          Сложная модель — YOLO
+        </option>
+      </select>
+
+      <label for="image">Изображение:</label>
+      <input id="image" type="file" name="image" accept="image/*" required>
+
+      <button type="submit">Проверить</button>
+    </form>
+
+    {% if error %}
+      <p class="error">{{ error }}</p>
+    {% endif %}
+
+    {% if result %}
+      <section class="result">
+        <strong>Использована:</strong> {{ result.model }}<br>
+        <strong>Результат:</strong> {{ result.label }}<br>
+        <strong>Уверенность:</strong> {{ result.confidence }}%
+      </section>
+
+      <img
+        class="preview"
+        src="data:image/jpeg;base64,{{ image_data }}"
+        alt="Загруженное изображение"
+      >
+    {% endif %}
+  </main>
+</body>
+</html>

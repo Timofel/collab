@@ -1,0 +1,16 @@
+{
+  "title": "Nut Defect Classification (Synthetic)",
+  "id": "kinza7/nut-defect-classification-synthetic",
+  "licenses": [
+    {
+      "name": "Apache-2.0"
+    }
+  ],
+  "keywords": [
+    "computer vision",
+    "manufacturing",
+    "image classification",
+    "synthetic data"
+  ],
+  "updateFrequency": "not expected to update"
+}

@@ -1,0 +1,5 @@
+path: C:/Users/user/Desktop/detects_ns/no_simple_version/yolo_dataset
+train: images/train
+val: images/val
+names:
+  0: defect

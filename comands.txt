@@ -1,0 +1,13 @@
+
+# установка всех библиотек из файла
+python -m pip install -r requirements.txt
+
+
+
+py -3.11 -m pip install PyQt5 lxml
+py -3.11 -m pip install pyqt5-tools
+pyrcc5 -o libs/resources.py resources.qrc
+py -3.11 labelImg.py
+
+
+pip install flask tensorflow pillow numpy
